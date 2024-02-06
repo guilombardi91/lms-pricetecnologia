@@ -1,9 +1,10 @@
 import mongoose, { Document, Model, Schema} from 'mongoose';
+import { IUser } from './user.model';
 
-interface IComment extends Document{
-    user: object,
-    comment: string;
-    commentReplies?: IComment[];
+export interface IComment extends Document{
+    user: IUser;
+    question: string;
+    questionReplies: IComment[];
 }
 
 
@@ -65,13 +66,13 @@ const linkSchema = new Schema<ILink>({
 
 const commentSchema = new Schema<IComment>({
     user: Object,
-    comment:String,
-    commentReplies: [Object],
+    question:String,
+    questionReplies: [Object],
 });
 
 const courseDataSchema = new Schema<ICourseData>({
     videoUrl: String,
-    videoThumbnail: Object,
+    // videoThumbnail: Object,
     title: String,
     videoSection: String,
     description: String,
@@ -100,11 +101,11 @@ const courseSchema = new Schema<ICourse>({
     },
     thumbnail:{
         public_id:{
-            required: true,
+            // required: true,
             type: String,
         },
         url:{
-            required: true,
+            // required: true,
             type: String,
         },
     },
